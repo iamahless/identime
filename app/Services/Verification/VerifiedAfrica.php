@@ -50,17 +50,51 @@ class VerifiedAfrica
         }
     }
 
+    public function getBVNDetails($payload): stdClass
+    {
+        try {
+            $request = Http::withHeaders([
+                'userid' => env('VERIFIED_AFRICA_USER_ID'),
+                'apiKey' => env('VERIFIED_AFRICA_BVN_API_KEY')
+            ])->post(env('VERIFIED_AFRICA_API_URL'), [
+                'firstName' => $payload->first_name,
+                'lastName' => $payload->last_name,
+                'searchParameter' => $payload->bvn,
+                'dob' => $payload->date_of_birth,
+                'phone' => $payload->phone,
+                'verificationType' => 'BVN-BOOLEAN-MATCH',
+                "email" => $payload->email
+            ]);
+
+            if ($request->successful()) {
+                $response = $request->object();
+
+                $this->payload->validity = $response->response->validity === "VALID";
+                $this->payload->success = true;
+
+                return $this->payload;
+            }
+
+            $this->payload->validity = false;
+            $this->payload->message = "cannot get bvn details at the moment";
+            $this->payload->success = false;
+
+            return $this->payload;
+
+        } catch (Exception $exception) {
+            $this->payload->message = "something went wrong";
+            $this->payload->success = false;
+
+            return $this->payload;
+        }
+    }
+
     public function getInternationalPassportDetails(): stdClass
     {
         return $this->payload;
     }
 
     public function getVotersCardDetails(): stdClass
-    {
-        return $this->payload;
-    }
-
-    public function getBVNDetails(): stdClass
     {
         return $this->payload;
     }

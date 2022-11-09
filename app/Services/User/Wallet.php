@@ -70,4 +70,26 @@ class Wallet
             return $this->payload;
         }
     }
+
+    public function verifyBVN(stdClass $wallet, stdClass $verifiedAfrica): stdClass
+    {
+        try {
+            if ($verifiedAfrica->validity) {
+                $wallet->wallet->update([
+                    'is_verified_at' => now()->toDateTimeString()
+                ]);
+            }
+
+            $this->payload->wallet = $wallet->wallet->fresh();
+            $this->payload->message = strtoupper($wallet->wallet->type).' has been verified and also added to your Wallet ';
+            $this->payload->success = true;
+
+            return $this->payload;
+        } catch (Exception $e) {
+            $this->payload->message = $e->getMessage();
+            $this->payload->success = false;
+
+            return $this->payload;
+        }
+    }
 }

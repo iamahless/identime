@@ -36,7 +36,7 @@ class AuthService
                 'type' => $isBusiness ? User::TYPE_BUSINESS : User::TYPE_DEFAULT,
                 "phone" => $payload->phone,
                 "password" => bcrypt($payload->password),
-                "ssn" => strtoupper(uniqid('ime-'))
+                "ssn" => time()
             ]);
 
             if ($isBusiness) {

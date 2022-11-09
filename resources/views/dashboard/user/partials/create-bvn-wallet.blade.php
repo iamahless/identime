@@ -5,7 +5,7 @@
         <div class="absolute inset-0 overflow-hidden">
             <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
                 <div class="pointer-events-auto w-screen max-w-md" x-show="openBvnWallet" x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full">
-                    <form class="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl">
+                    <form class="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl" method="POST" action="{{ route('create-bvn-wallet') }}">
                         @csrf
                         <div class="h-0 flex-1 overflow-y-auto">
                             <div class="bg-indigo-700 py-6 px-4 sm:px-6">
@@ -31,25 +31,37 @@
                                         <div>
                                             <label for="first_name" class="block text-sm font-medium text-gray-900">First name</label>
                                             <div class="mt-1">
-                                                <input type="text" name="first_name" id="first_name" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" readonly value="JOHN">
+                                                <input type="text" name="first_name" id="first_name" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" readonly value="Oluwaseun1">
                                             </div>
                                         </div>
                                         <div>
                                             <label for="last_name" class="block text-sm font-medium text-gray-900">Last name</label>
                                             <div class="mt-1">
-                                                <input type="text" name="last_name" id="last_name" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" readonly value="DOE">
+                                                <input type="text" name="last_name" id="last_name" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" readonly value="Akinmukomi">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="email" class="block text-sm font-medium text-gray-900">Email</label>
+                                            <div class="mt-1">
+                                                <input type="email" name="email" id="email" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" readonly value="doluwasegun@seamfix.com">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="phone" class="block text-sm font-medium text-gray-900">Phone</label>
+                                            <div class="mt-1">
+                                                <input type="text" name="phone" id="phone" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" readonly value="08167396655">
                                             </div>
                                         </div>
                                         <div>
                                             <label for="bvn" class="block text-sm font-medium text-gray-900">BVN</label>
                                             <div class="mt-1">
-                                                <input type="text" name="bvn" id="bvn" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" readonly value="22222222223">
+                                                <input type="text" name="bvn" id="bvn" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" readonly value="22231411111">
                                             </div>
                                         </div>
                                         <div>
                                             <label for="date_of_birth" class="block text-sm font-medium text-gray-900">Date of Birth</label>
                                             <div class="mt-1">
-                                                <input type="text" name="date_of_birth" id="date_of_birth" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" readonly value="1988-05-11">
+                                                <input type="text" name="date_of_birth" id="date_of_birth" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" readonly value="19-Aug-1991">
                                             </div>
                                         </div>
                                     </div>

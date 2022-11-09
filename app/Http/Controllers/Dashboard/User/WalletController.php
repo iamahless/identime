@@ -45,10 +45,32 @@ class WalletController extends Controller
 
     public function createBvnWallet(Request $request)
     {
+        $request->validate([
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'bvn' => 'required|string|digits:11',
+            'date_of_birth' => 'required|string',
+            'phone' => 'required|string',
+            'email' => 'required|string|email'
+        ]);
 
+        $wallet = $this->walletService->create($request, WalletModel::TYPE_BVN);
+        $verifiedAfrica = $this->verify->getBVNDetails($request);
+
+        if ($verifiedAfrica->success) {
+            $response = $this->walletService->verifyBVN($wallet, $verifiedAfrica);
+
+            if($response->success) {
+                return redirect()->back()->with('success', $response->message);
+            }
+
+            return redirect()->back()->withErrors($response->message);
+        }
+
+        return redirect()->back()->withErrors($verifiedAfrica->message);
     }
 
-    private function getUserPayload($request)
+    private function getUserPayload($request): object
     {
         $payload = [
             "name" => "{$request->first_name} {$request->last_name}",

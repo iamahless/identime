@@ -11,7 +11,8 @@ class AuthController extends Controller
 {
     public function __construct(
         private AuthService $auth
-    ) {}
+    ) {
+    }
 
     public function getRegister(Request $request)
     {
