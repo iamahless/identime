@@ -21,7 +21,6 @@ return new class extends Migration
             $table->enum('type', ['default', 'business'])->default('default');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->date('date_of_birth');
             $table->string('avatar')->nullable();
             $table->string('ssn');
             $table->rememberToken();

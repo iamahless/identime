@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Business extends Model
 {
@@ -24,14 +25,17 @@ class Business extends Model
         'name',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($business) {
+            $business->businessKey()->create([
+                'public_key' => "ime_pub_".Str::random(40),
+                'private_key' => "ime_pri_".Str::random(40)
+            ]);
+        });
+    }
 
     public function user(): BelongsTo
     {

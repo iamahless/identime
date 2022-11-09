@@ -15,7 +15,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('business_keys', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary()->unique();
             $table->foreignIdFor(Business::class)
                 ->references('id')
                 ->on('businesses');

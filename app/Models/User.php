@@ -11,6 +11,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @property mixed $type
+ * @method create(array $array)
+ */
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, HasUuids;
@@ -29,7 +33,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'phone',
         'type',
-        'date_of_birth',
         'avatar',
         'ssn',
         'email_verified_at'
@@ -53,6 +56,16 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isDefaultType(): bool
+    {
+        return $this->type === self::TYPE_DEFAULT;
+    }
+
+    public function isBusinessType(): bool
+    {
+        return $this->type === self::TYPE_BUSINESS;
+    }
 
     public function business(): HasOne
     {
