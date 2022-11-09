@@ -9,11 +9,11 @@
                     <form class="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl" method="POST" action="{{ route('create-nin-wallet') }}">
                         @csrf
                         <div class="h-0 flex-1 overflow-y-auto">
-                            <div class="bg-indigo-700 py-6 px-4 sm:px-6">
+                            <div class="bg-purple-700 py-6 px-4 sm:px-6">
                                 <div class="flex items-center justify-between">
                                     <h2 class="text-lg font-medium text-white" id="slide-over-title">National Identity Information</h2>
                                     <div class="ml-3 flex h-7 items-center">
-                                        <button type="button" class="rounded-md bg-indigo-700 text-indigo-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white" @click="openNinWallet = false;">
+                                        <button type="button" class="rounded-md bg-purple-700 text-purple-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white" @click="openNinWallet = false;">
                                             <span class="sr-only">Close panel</span>
                                             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -22,8 +22,8 @@
                                     </div>
                                 </div>
                                 <div class="mt-1">
-                                    <p class="text-sm text-indigo-300">Kindly fill in the required information as it is on your National Identity Slip.</p>
-                                    <p class="text-sm text-indigo-100 font-extrabold pt-2">Due to the fact we are using sandbox mode the form prefilled</p>
+                                    <p class="text-sm text-purple-300">Kindly fill in the required information as it is on your National Identity Slip.</p>
+                                    <p class="text-sm text-purple-100 font-extrabold pt-2">Due to the fact we are using sandbox mode the form prefilled</p>
                                 </div>
                             </div>
                             <div class="flex flex-1 flex-col justify-between">
@@ -32,25 +32,25 @@
                                         <div>
                                             <label for="first_name" class="block text-sm font-medium text-gray-900">First name</label>
                                             <div class="mt-1">
-                                                <input type="text" name="first_name" id="first_name" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" readonly value="JOHN">
+                                                <input type="text" name="first_name" id="first_name" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm" readonly value="JOHN">
                                             </div>
                                         </div>
                                         <div>
                                             <label for="last_name" class="block text-sm font-medium text-gray-900">Last name</label>
                                             <div class="mt-1">
-                                                <input type="text" name="last_name" id="last_name" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" readonly value="DOE">
+                                                <input type="text" name="last_name" id="last_name" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm" readonly value="DOE">
                                             </div>
                                         </div>
                                         <div>
                                             <label for="nin" class="block text-sm font-medium text-gray-900">NIN Number</label>
                                             <div class="mt-1">
-                                                <input type="text" name="nin" id="nin" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" readonly value="02730846093">
+                                                <input type="text" name="nin" id="nin" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm" readonly value="02730846093">
                                             </div>
                                         </div>
                                         <div>
                                             <label for="date_of_birth" class="block text-sm font-medium text-gray-900">Date of Birth</label>
                                             <div class="mt-1">
-                                                <input type="text" name="date_of_birth" id="date_of_birth" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" readonly value="1988-05-11">
+                                                <input type="text" name="date_of_birth" id="date_of_birth" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm" readonly value="1988-05-11">
                                             </div>
                                         </div>
                                     </div>
@@ -58,8 +58,8 @@
                             </div>
                         </div>
                         <div class="flex flex-shrink-0 justify-end px-4 py-4">
-                            <button type="button" class="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" @click="openNinWallet = false;">Cancel</button>
-                            <button type="submit" class="ml-4 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Submit</button>
+                            <button type="button" class="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2" @click="openNinWallet = false;">Cancel</button>
+                            <button type="submit" class="ml-4 inline-flex justify-center rounded-md border border-transparent bg-purple-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">Submit</button>
                         </div>
                     </form>
                 </div>
