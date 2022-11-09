@@ -9,6 +9,7 @@ use Exception;
 use Ichtrojan\Otp\Otp;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use stdClass;
@@ -68,5 +69,30 @@ class AuthService
         }
 
         return redirect()->intended(route('dashboard-user'));
+    }
+
+    public function login($payload)
+    {
+        try {
+            $user = $this->user->where('email', $payload->email)->first();
+
+            if ($user instanceof User && Hash::check($payload->password, $user->password)) {
+                Auth::login($user);
+                $this->payload->message = "User logged in successfully";
+                $this->payload->success = true;
+
+                return $this->payload;
+            }
+
+            $this->payload->message = "Invalid credentials";
+            $this->payload->success = false;
+
+            return $this->payload;
+        } catch (Exception $exception) {
+            $this->payload->message = $exception->getMessage();
+            $this->payload->success = false;
+
+            return $this->payload;
+        }
     }
 }

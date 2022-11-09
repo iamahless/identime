@@ -11,9 +11,11 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
+        $wallets = $user->wallets()->whereNotNull('is_verified_at')->get();
 
         return view('dashboard.user.home', [
-            'user' => $user
+            'user' => $user,
+            'wallets' => $wallets
         ]);
     }
 }

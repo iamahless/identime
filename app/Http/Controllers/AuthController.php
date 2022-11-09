@@ -35,7 +35,7 @@ class AuthController extends Controller
             return $this->auth->redirect();
         }
 
-        return redirect()->back()->withError($auth->message);
+        return redirect()->back()->withErrors($auth->message);
     }
 
     public function getLogin(Request $request)
@@ -49,6 +49,14 @@ class AuthController extends Controller
             'email' => 'required|string|email',
             'password' => 'required|string',
         ]);
+
+        $auth = $this->auth->login($request);
+
+        if ($auth->success) {
+            return $this->auth->redirect();
+        }
+
+        return redirect()->back()->withErrors($auth->message);
     }
 
     public function getLogout()

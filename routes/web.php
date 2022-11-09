@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Dashboard\Business\HomeController as BusinessHomeController;
 use App\Http\Controllers\Dashboard\User\HomeController as UserHomeController;
+use App\Http\Controllers\Dashboard\User\WalletController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('get-home');
 
 Route::prefix('auth')->group(function () {
     Route::get('register', [AuthController::class, 'getRegister'])->name('get-register');
@@ -31,6 +32,8 @@ Route::prefix('auth')->group(function () {
 
 Route::prefix('dashboard/user')->middleware(['auth', 'is.default.user'])->group(function () {
     Route::get('/', [UserHomeController::class, 'index'])->name('dashboard-user');
+    Route::post('create-nin-wallet', [WalletController::class, 'createNinWallet'])->name('create-nin-wallet');
+    Route::post('create-bvn-wallet', [WalletController::class, 'createBvnWallet'])->name('create-bvn-wallet');
 });
 
 Route::prefix('dashboard/business')->middleware(['auth', 'is.business.user'])->group(function () {

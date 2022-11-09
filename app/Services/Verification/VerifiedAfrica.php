@@ -3,29 +3,51 @@
 namespace App\Services\Verification;
 
 use App\Models\User;
-use Carbon\Carbon;
 use Exception;
-use Illuminate\Http\Client\PendingRequest;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 use stdClass;
 
 class VerifiedAfrica
 {
-    private PendingRequest $verifiedAfrica;
-    private stdClass $payload;
-
-    public function __construct()
+    public function __construct(
+        private stdClass $payload
+    )
     {
-        $this->verifiedAfrica = Http::withHeaders([
-            'api-key' => env('VERIFIED_AFRICA_SECRET_KEY')
-        ])->baseUrl(env('VERIFIED_AFRICA_BASE_URL'));
-        $this->payload = new stdClass();
     }
 
-    public function getNinDetails(): stdClass
+    public function getNinDetails($payload): stdClass
     {
-        return $this->payload;
+        try {
+            $request = Http::withHeaders([
+                'userid' => env('VERIFIED_AFRICA_USER_ID'),
+                'apiKey' => env('VERIFIED_AFRICA_NIN_API_KEY')
+            ])->post(env('VERIFIED_AFRICA_API_URL'), [
+                'searchParameter' => $payload->nin,
+                'verificationType' => 'NIN-SEARCH',
+                "transactionReference" => ""
+            ]);
+
+            if ($request->successful()) {
+                $response = $request->object();
+
+                $this->payload->name = $this->trimString("{$response->response[0]->firstname} {$response->response[0]->middlename} {$response->response[0]->surname}");
+                $this->payload->birthdate = $response->response[0]->birthdate;
+                $this->payload->success = true;
+
+                return $this->payload;
+            }
+
+            $this->payload->message = "cannot get nin details at the moment";
+            $this->payload->success = false;
+
+            return $this->payload;
+        } catch (Exception $exception) {
+            $this->payload->message = "something went wrong";
+            $this->payload->success = false;
+
+            return $this->payload;
+        }
     }
 
     public function getInternationalPassportDetails(): stdClass
@@ -46,6 +68,11 @@ class VerifiedAfrica
     public function getDriverLicenseDetails(): stdClass
     {
         return $this->payload;
+    }
+
+    private function trimString($string): string
+    {
+        return trim(preg_replace('/[\t\n\r\s]+/', ' ', $string));
     }
 
 }

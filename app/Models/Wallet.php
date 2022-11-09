@@ -11,12 +11,12 @@ class Wallet extends Model
 {
     use HasFactory, HasUuids;
 
-    private const TYPE_NIN = 'nin';
-    private const TYPE_BVN = 'bvn';
-    private const TYPE_PASSPORT = 'passport';
-    private const TYPE_LICENSE = 'license';
-    private const TYPE_HEALTH = 'health';
-    private const TYPE_VC = 'vote_card';
+    public const TYPE_NIN = 'nin';
+    public const TYPE_BVN = 'bvn';
+    public const TYPE_PASSPORT = 'passport';
+    public const TYPE_LICENSE = 'license';
+    public const TYPE_HEALTH = 'health';
+    public const TYPE_VC = 'vote_card';
 
     /**
      * The attributes that are mass assignable.
@@ -48,6 +48,7 @@ class Wallet extends Model
     protected $hidden = [
         'created_at',
         'updated_at',
+        'payload'
     ];
 
     public function user(): BelongsTo
