@@ -18,7 +18,7 @@
                     <div class="flex justify-start lg:w-0 lg:flex-1">
                         <a href="#">
                             <span class="sr-only">IdentiME</span>
-                            <img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/mark.svg?color=purple&shade=600" alt="">
+                            <img class="h-12 w-auto sm:h-12" src="{{ asset('img/identime.svg') }}" alt="IdentiME">
                         </a>
                     </div>
                     <div class="-my-2 -mr-2 md:hidden">
@@ -48,7 +48,7 @@
                     <div class="px-5 pt-5 pb-6">
                         <div class="flex items-center justify-between">
                             <div>
-                                <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=purple&shade=600" alt="Your Company">
+                                <img class="h-8 w-auto" src="{{ asset('img/identime.svg') }}" alt="IdentiME">
                             </div>
                             <div class="-mr-2">
                                 <button type="button" class="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500">
