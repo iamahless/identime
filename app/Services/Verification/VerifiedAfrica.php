@@ -16,7 +16,7 @@ class VerifiedAfrica
     {
     }
 
-    public function getNinDetails($payload): stdClass
+    public function getNinDetails($payload, $getResponse = false): stdClass
     {
         try {
             $request = Http::withHeaders([
@@ -27,6 +27,11 @@ class VerifiedAfrica
                 'verificationType' => 'NIN-SEARCH',
                 "transactionReference" => ""
             ]);
+
+            if ($getResponse) {
+                $this->payload->data = $request->json();
+                return $this->payload;
+            }
 
             if ($request->successful()) {
                 $response = $request->object();
