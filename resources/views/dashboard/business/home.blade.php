@@ -6,8 +6,9 @@
         <div class="space-y-6 pt-8 sm:space-y-5 sm:pt-10">
             <div>
                 <h3 class="text-lg font-medium leading-6 text-gray-900">Personal Information</h3>
-                <p class="mt-1 max-w-2xl text-sm text-gray-500">Use a permanent address where you can receive
-                    mail.</p>
+                <p class="mt-1 max-w-2xl text-sm text-gray-500">Use a permanent address where you can receive mail.</p>
+                <p class="mt-1 max-w-2xl text-sm text-gray-500">Use this API Documentation to get verified IDs from a user digital wallet <a href="https://documenter.getpostman.com/view/5782500/2s8YekQuKn" target="_blank" rel="noopener">https://documenter.getpostman.com/view/5782500/2s8YekQuKn</a></p>
+
             </div>
             <div class="space-y-6 sm:space-y-5">
                 <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">

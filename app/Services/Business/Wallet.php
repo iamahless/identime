@@ -18,8 +18,8 @@ class Wallet
     ) {
     }
 
-	public function getUserNinDetail($ssn)
-	{
+	public function getUserNinDetail($ssn): stdClass
+    {
         try {
             $user = $this->user->where('ssn', $ssn)->firstOrFail();
 
@@ -49,4 +49,36 @@ class Wallet
             return $this->payload;
         }
 	}
+
+    public function getUserBvnDetail($ssn): stdClass
+    {
+        try {
+            $user = $this->user->where('ssn', $ssn)->firstOrFail();
+
+            $wallet = $user->wallets()->where('type', Model::TYPE_BVN)->firstOrFail();
+
+            $payload = (object)json_decode($wallet->payload);
+            $response = $this->verifyService->getBvnDetails($payload, true);
+
+            $this->payload->message = "User bvn details";
+            $this->payload->data = $response->data;
+            $this->payload->status = 200;
+
+            return $this->payload;
+
+
+        } catch (Exception $exception) {
+            if ($exception instanceof ModelNotFoundException) {
+                $this->payload->message = "invalid user security ID / Required ID isn't assigned to user security ID";
+                $this->payload->status = 404;
+
+                return $this->payload;
+            }
+
+            $this->payload->message = $exception->getMessage();
+            $this->payload->status = 500;
+
+            return $this->payload;
+        }
+    }
 }

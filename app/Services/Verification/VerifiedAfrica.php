@@ -55,7 +55,7 @@ class VerifiedAfrica
         }
     }
 
-    public function getBVNDetails($payload): stdClass
+    public function getBVNDetails($payload, $getResponse = false): stdClass
     {
         try {
             $request = Http::withHeaders([
@@ -70,6 +70,11 @@ class VerifiedAfrica
                 'verificationType' => 'BVN-BOOLEAN-MATCH',
                 "email" => $payload->email
             ]);
+
+            if ($getResponse) {
+                $this->payload->data = $request->json();
+                return $this->payload;
+            }
 
             if ($request->successful()) {
                 $response = $request->object();
